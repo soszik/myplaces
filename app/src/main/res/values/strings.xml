@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="add_place">Add new place</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyCKf1UClpudFlNpmIaFRZHLFUF_BVi1T1o</string>
+</resources>
