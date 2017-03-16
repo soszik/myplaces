@@ -2,5 +2,13 @@
     <string name="app_name">MyPlaces</string>
     <string name="add_place">Add new place</string>
     <string name="title_activity_maps">Map</string>
+    <string name="showPlacesText">Your places</string>
+    <string-array name="categories">
+        <item>bar</item>
+        <item>cafe</item>
+        <item>home</item>
+        <item>restaurant</item>
+        <item>shop</item>
+    </string-array>
     <string name="google_maps_key">AIzaSyCKf1UClpudFlNpmIaFRZHLFUF_BVi1T1o</string>
 </resources>

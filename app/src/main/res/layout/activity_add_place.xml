@@ -14,28 +14,28 @@
         android:layout_height="wrap_content"
         android:text="Name of the place"
         android:id="@+id/addNameTextView"
-        android:layout_marginTop="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/categoryTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
 
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/nameEditText"
-        android:layout_toRightOf="@+id/addNameTextView"
-        android:layout_alignTop="@+id/addNameTextView"
         android:layout_marginLeft="20dp"
-      />
+        android:layout_alignTop="@+id/addNameTextView"
+        android:layout_toEndOf="@+id/addNameTextView"
+        android:layout_marginStart="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
         android:id="@+id/placeDescTextView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/nameEditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_toStartOf="@+id/nameEditText" />
 
     <EditText
         android:layout_width="200dp"
@@ -43,17 +43,20 @@
         android:inputType="textMultiLine"
         android:id="@+id/descEditText"
         android:layout_alignTop="@+id/placeDescTextView"
-        android:layout_alignStart="@+id/nameEditText"
-        />
+        android:layout_alignStart="@+id/nameEditText" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity"
-        android:layout_below="@+id/descEditText" />
+        android:layout_below="@+id/descEditText"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -63,5 +66,22 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:onClick="addPlace"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categorySpinner"
+        android:layout_alignTop="@+id/categoryTextView"
+        android:layout_alignStart="@+id/nameEditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Category"
+        android:id="@+id/categoryTextView"
+        android:layout_below="@+id/placeAddedButton"
+        android:layout_alignEnd="@+id/addNameTextView"
+        android:layout_marginTop="22dp" />
 
 </RelativeLayout>

@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,13 +21,19 @@ public class AddPlaceActivity extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap thisMap;
     private LatLng currentLatLng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_place);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-
+        //categories
+        Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
         mapFragment.getMapAsync(this);
     }
 
@@ -40,15 +48,18 @@ public class AddPlaceActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
     public void addPlace(View view) {
+        Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
         EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
         EditText descEditText = (EditText) findViewById(R.id.descEditText);
         String name = nameEditText.getText().toString();
         String desc = descEditText.getText().toString();
+        String category = categorySpinner.getSelectedItem().toString();
         PlacesDbHelper mDbHelper = new PlacesDbHelper(this);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PlacesDbHelper.PlaceEntry.COLUMN_NAME_NAME, name);
         values.put(PlacesDbHelper.PlaceEntry.COLUMN_NAME_DESCRIPTION, desc);
+        values.put(PlacesDbHelper.PlaceEntry.COLUMN_NAME_CATEGORY, category);
         values.put(PlacesDbHelper.PlaceEntry.COLUMN_NAME_LAT, (float)currentLatLng.latitude);
         values.put(PlacesDbHelper.PlaceEntry.COLUMN_NAME_LNG, (float)currentLatLng.longitude);
         db.insert(PlacesDbHelper.PlaceEntry.TABLE_NAME, null,values);

@@ -13,11 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="@string/showPlacesText"
         android:id="@+id/showPlacesTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp" />
+        android:textSize="25dp" />
 
     <ListView
         android:layout_width="wrap_content"
