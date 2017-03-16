@@ -1,5 +1,6 @@
 package com.soszik.myplaces;
 
+import  android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,6 +33,8 @@ public class ShowPlacesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_places);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         ArrayList<Place> places = getPlacesFromDB();
         ArrayList<String> namesOfPlaces = getNamesOfPlaces();
         TextView textView = (TextView) findViewById(R.id.showPlacesTextView);
@@ -48,7 +51,8 @@ public class ShowPlacesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object listItem = listView.getItemAtPosition(position);
-                String name = (String) listItem;
+                Place place = (Place) listItem;
+                String name = place.getName();
                 Intent intent = new Intent(ShowPlacesActivity.this, ShowPlaceDatailsActivity.class);
                 intent.putExtra(ShowPlaceDatailsActivity.EXTRA_PLACE_NAME, name);
                 startActivity(intent);
@@ -86,13 +90,13 @@ public class ShowPlacesActivity extends AppCompatActivity {
         String name, desc, cat;
         float lat, lng;
         while(cursor.moveToNext()){
-            //TODO lat,lng
+
             name = cursor.getString(cursor.getColumnIndexOrThrow(PlacesDbHelper.PlaceEntry.COLUMN_NAME_NAME));
             desc = cursor.getString(cursor.getColumnIndexOrThrow(PlacesDbHelper.PlaceEntry.COLUMN_NAME_DESCRIPTION));
             cat = cursor.getString(cursor.getColumnIndexOrThrow(PlacesDbHelper.PlaceEntry.COLUMN_NAME_CATEGORY));
             lat = cursor.getFloat(cursor.getColumnIndexOrThrow(PlacesDbHelper.PlaceEntry.COLUMN_NAME_LAT));
             lng = cursor.getFloat(cursor.getColumnIndexOrThrow(PlacesDbHelper.PlaceEntry.COLUMN_NAME_LNG));
-            places.add(new Place(name, desc, cat, 2, 2));
+            places.add(new Place(name, desc, cat, lat, lng));
         }
         cursor.close();
         return places;

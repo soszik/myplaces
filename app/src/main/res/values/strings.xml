@@ -10,5 +10,8 @@
         <item>restaurant</item>
         <item>shop</item>
     </string-array>
+    <string name="showPlaces">Show places</string>
+    <string name="showPlacesDetails">Details</string>
+    <string name="addPlace">Add new place</string>
     <string name="google_maps_key">AIzaSyCKf1UClpudFlNpmIaFRZHLFUF_BVi1T1o</string>
 </resources>
